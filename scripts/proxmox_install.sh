@@ -4,6 +4,10 @@
 # LOCIFY PROXMOX HELPER SCRIPT
 # Description: Installs Locify (Self-hosted Music Mirror) in a Proxmox LXC
 # ======================================================================================
+if [ ! -d /etc/pve ]; then
+    echo "❌ Error: This script must be run on a Proxmox VE host!"
+    exit 1
+fi
 
 set -e
 
