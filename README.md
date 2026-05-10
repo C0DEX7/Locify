@@ -93,7 +93,7 @@ Locify organizes your media into a structured, self-contained format:
 
 - Streaming: Uses HTTP Byte-Range requests for instant, seamless seeking.
 
--Source Toggle: Easily switch between "Spotify Mirror" and "Apple Music Mirror" while maintaining a consistent, Spotify-inspired aesthetic.
+- Source Toggle: Easily switch between "Spotify Mirror" and "Apple Music Mirror" while maintaining a consistent, Spotify-inspired aesthetic.
 
 ### ⚙️ Deployment
 (Instructions for Docker/Proxmox setup will go here)
