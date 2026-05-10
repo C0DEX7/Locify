@@ -18,17 +18,20 @@ Locify is a self-hosted backend engine that creates a **1:1 physical mirror** of
 Locify organizes your hard drive into a clean, human-readable hierarchy:
 ```text
 /music-library/
+├── [master files]/
+│   ├── song1.mp4
+│   ├── song1.png
+│   ├── song1.json <- metadata
+│   ├── trackA.mp4
+│   ├── trackA.png
+│   └── trackA.json <- metadata
 └── [User_Name]/
     ├── [Spotify]/
     │   └── [Playlist_Name]/
-    │       ├── song1.mp4
-    │       ├── song1.png
-    │       └── song1.json  <-- Independent Metadata
+    │       └── song1_sym.json
     └── [Apple_Music]/
-        └── [Driving_Mix]/
-            ├── trackA.mp4
-            ├── trackA.png
-            └── trackA.json
+        └── [Playlist_Name]/
+            └── trackA_sym.json
 
 ```
 ### 🛠️ Proxmox Quick Install
