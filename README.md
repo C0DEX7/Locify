@@ -1,48 +1,48 @@
 # 🎵Locify
 **Your music. Your server. Your terms.**
 
-Locify is a self-hosted backend ecosystem designed to create a **1:1 local mirror** of your Spotify and Apple Music libraries. It acts as a private streaming cloud, allowing users to host their own music on home hardware (LXC) and stream them to any device, maintaining full ownership and offline access.
+Locify is a self-hosted backend ecosystem that creates a true 1:1 local mirror of your Spotify and Apple Music libraries. By transforming your home hardware into a private streaming cloud, Locify gives you full ownership of your music, ensuring offline access and eliminating dependency on external cloud providers.
 
-### **Core Functionality**
+🚀 Features
+Multi-Provider Synchronization: Link Spotify, Apple Music, or both to a single local server.
 
-- **Multi-User & Multi-Provider:** Each user creates a local server account. Within their settings, they link a Spotify account, an Apple Music account, or both.
-- **The "Source" Toggle:** Upon opening the app, users choose which service library (spotify/apple music) they want to interact with.
-- **Automated Mirroring:** The server constantly "diffs" the local library against the remote Spotify/Apple APIs.
-    - **Additions:** New songs added to a remote playlist are automatically downloaded.
-    - **Removals:** If a song is removed from a playlist, the server removes it from that local folder immediately.
-    - **Trigger A:** Instant sync when a user opens the desktop/mobile app.
-    - **Trigger B:** Background "Diff" every **1 hour** to catch changes made while the app was closed
-    - **Trigger C:** instant sync when user refreshes the page
-- **Custom Library Uploads:** Users can bypass cloud providers by manually uploading custom music files (e.g., rare bootlegs, personal recordings).
-    - **Manual Requirements:** To maintain system consistency, users must manually provide the high-resolution **Album Art** and add the **Metadata** (Title, optional-artist,album) during the upload process.
-- **Intelligent Storage (Reference Counting):**
-    - If a song exists in multiple playlists, it is stored physically only **once** to save space.
-    - The backend only deletes the physical file from the hard drive when it is no longer present in **any** playlist across the entire server.
-- **spotDL Integration:** Uses the spotDL engine to resolve Spotify metadata into high-quality .mp4 files, automatically embedding metadata and album art.
+Intelligent Mirroring: Automated "diffing" keeps your local library perfectly in sync with your remote playlists (Additions/Removals).
 
-### **Technical Specifications**
+Custom Library Support: Manually upload rare bootlegs or personal recordings with integrated metadata and artwork management.
 
-- **Deployment:** Designed to run as **Open Source** software within a **Proxmox LXC, Docker container**.
-- **Backend Logic:**
-    - **Database:** Tracks file paths, unique IDs, and "reference counts" for every song.
-    - **Filesystem:** Uses **Symbolic Links (Symlinks)** to show songs in multiple playlist folders without duplicating data.
-- **Resource Allocation:**
-    - **CPU:** 2 vCPUs (Burst-capable). spotDL and ffmpeg require short CPU spikes during the conversion and tagging process.
-    - **RAM:** 1GB - 2GB. Most of the time it will sit idle, but a buffer is needed for scanning large libraries.
-    - **Storage:** Scalable based on library size (average 10MB per song).
-    - **Integrity Layer:** Every song bundle includes a **SHA-256 Checksum** stored in the JSON sidecar. This allows the system to verify file health during backups or migrations.
-- **UI/UX:** A high-fidelity "Spotify-like" interface for Mobile and Desktop, supporting local server streaming and offline caching.
+Space-Efficient Storage: Uses Reference Counting and Symbolic Links (Symlinks)—if a song exists in multiple playlists, it is stored physically only once.
 
-### **Mirror File Structure**
+Robust Integrity: SHA-256 checksums are maintained for every song bundle, ensuring data health during backups or migrations.
 
-The backend organizes the storage so that every song is a self-contained bundle of media, metadata, and artwork within its respective playlist folder:
+Offline Resilience: The UI is 100% functional (metadata, search, navigation) even when the external internet is down.
 
-- **Playlist Name/**
-    - song_name.mp4 (The high-quality audio)
-    - song_name.png (High-resolution album art)
-    - song_name.json (Detailed track metadata)
+Spotify-Clone UI: A high-fidelity, dark-mode interface for Mobile and Desktop that provides a seamless streaming experience.
 
-```
+🛠 Technical Specifications
+Backend & Deployment
+Environment: Designed for Proxmox LXC or Docker containers.
+
+Engine: Leverages spotDL for high-quality audio resolution and ffmpeg for tagging.
+
+Resource Requirements:
+
+CPU: 2 vCPUs (Burst-capable for conversion/tagging tasks).
+
+RAM: 1GB - 2GB.
+
+Storage: Scalable (avg. 10MB per song).
+
+Sync Triggers
+Instant: Triggered upon opening the mobile/desktop app.
+
+Scheduled: Background "diff" every 1 hour.
+
+Manual: Triggered upon page refresh.
+
+📂 File Structure
+Locify organizes your media into a structured, self-contained format:
+
+```Plaintext
 /music-library/
 ├── [master files]/
 │   ├── song1.mp4
@@ -54,33 +54,34 @@ The backend organizes the storage so that every song is a self-contained bundle 
 └── [User_Name]/
     ├── [Spotify]/
     │   └── [Playlist_Name]/
+    │       ├── playlist_cover.png
     │       └── song1_sym.json
     └── [Apple_Music]/
         └── [Playlist_Name]/
+		        ├── playlist_cover.png
             └── trackA_sym.json
 ```
-
-**Example Metadata Schema (song_name.json):**
-
-```json
+Metadata Schema (.json)
+```JSON
 {
   "title": "Song Name",
   "artist": "Artist Name",
   "album": "Album Name",
   "source": "spotify",
   "external_id": "4cOdK2wGZYmSnuA3n",
-  "checksum": "a1b2c3d4...."
+  "checksum": "a1b2c3d4....",
   "downloaded_at": "2026-03-20",
   "is_explicit": true
 }
 ```
+📱 Native Apps
+Built with Flutter/React Native, the client app connects to your server via IP/Hostname.
 
-**Example symlink schema:**
+Onboarding: Secure login flow with support for password resets.
 
-```json
-{
-  "music_file": "song1.mp4",
-  "music_art": "song1.png",
-  "music_metadata": "song1.json"
-}
-```
+Streaming: Uses HTTP Byte-Range requests for instant, seamless seeking.
+
+Source Toggle: Easily switch between "Spotify Mirror" and "Apple Music Mirror" while maintaining a consistent, Spotify-inspired aesthetic.
+
+⚙️ Deployment
+(Instructions for Docker/Proxmox setup will go here)
