@@ -56,6 +56,16 @@ Each song bundle includes a JSON file to ensure the library remains functional e
   "downloaded_at": "2026-05-08",
   "is_explicit": true
 }
+```
+### 📝 Symlink Schema (.json)
+```json
+{
+  "music_file": "song1.mp4",
+  "music_art": "song1.png",
+  "music_metadata": "song1.json"
+}
+```
+
 
 ```
 ### 🛡️ License
