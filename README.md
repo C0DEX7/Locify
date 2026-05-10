@@ -3,7 +3,7 @@
 
 Locify is a self-hosted backend ecosystem that creates a true 1:1 local mirror of your Spotify and Apple Music libraries. By transforming your home hardware into a private streaming cloud, Locify gives you full ownership of your music, ensuring offline access and eliminating dependency on external cloud providers.
 
-🚀 Features
+### 🚀 Features
 Multi-Provider Synchronization: Link Spotify, Apple Music, or both to a single local server.
 
 Intelligent Mirroring: Automated "diffing" keeps your local library perfectly in sync with your remote playlists (Additions/Removals).
@@ -18,7 +18,7 @@ Offline Resilience: The UI is 100% functional (metadata, search, navigation) eve
 
 Spotify-Clone UI: A high-fidelity, dark-mode interface for Mobile and Desktop that provides a seamless streaming experience.
 
-🛠 Technical Specifications
+### 🛠 Technical Specifications
 Backend & Deployment
 Environment: Designed for Proxmox LXC or Docker containers.
 
@@ -32,14 +32,14 @@ RAM: 1GB - 2GB.
 
 Storage: Scalable (avg. 10MB per song).
 
-Sync Triggers
+###Sync Triggers
 Instant: Triggered upon opening the mobile/desktop app.
 
 Scheduled: Background "diff" every 1 hour.
 
 Manual: Triggered upon page refresh.
 
-📂 File Structure
+### 📂 File Structure
 Locify organizes your media into a structured, self-contained format:
 
 ```Plaintext
@@ -61,7 +61,7 @@ Locify organizes your media into a structured, self-contained format:
 		        ├── playlist_cover.png
             └── trackA_sym.json
 ```
-Metadata Schema (.json)
+**Metadata Schema** (.json)
 ```JSON
 {
   "title": "Song Name",
@@ -74,7 +74,16 @@ Metadata Schema (.json)
   "is_explicit": true
 }
 ```
-📱 Native Apps
+**symlink schema:**
+
+```json
+{
+  "music_file": "song1.mp4",
+  "music_art": "song1.png",
+  "music_metadata": "song1.json"
+}
+```
+ ###📱 Native Apps
 Built with Flutter/React Native, the client app connects to your server via IP/Hostname.
 
 Onboarding: Secure login flow with support for password resets.
