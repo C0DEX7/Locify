@@ -65,8 +65,5 @@ Each song bundle includes a JSON file to ensure the library remains functional e
   "music_metadata": "song1.json"
 }
 ```
-
-
-```
 ### 🛡️ License
 Distributed under the MIT License. See LICENSE for more information.
