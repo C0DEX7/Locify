@@ -87,13 +87,13 @@ Locify organizes your media into a structured, self-contained format:
 }
 ```
 ### 📱 Native Apps
-Built with Flutter/React Native, the client app connects to your server via IP/Hostname.
+- Built with Flutter/React Native, the client app connects to your server via IP/Hostname.
 
-Onboarding: Secure login flow with support for password resets.
+- Onboarding: Secure login flow with support for password resets.
 
-Streaming: Uses HTTP Byte-Range requests for instant, seamless seeking.
+- Streaming: Uses HTTP Byte-Range requests for instant, seamless seeking.
 
-Source Toggle: Easily switch between "Spotify Mirror" and "Apple Music Mirror" while maintaining a consistent, Spotify-inspired aesthetic.
+-Source Toggle: Easily switch between "Spotify Mirror" and "Apple Music Mirror" while maintaining a consistent, Spotify-inspired aesthetic.
 
 ### ⚙️ Deployment
 (Instructions for Docker/Proxmox setup will go here)
