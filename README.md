@@ -62,7 +62,7 @@ Locify organizes your media into a structured, self-contained format:
     └── [Apple_Music]/
         └── [Playlist_Name]/
 		        ├── playlist_cover.png
-            └── trackA_sym.json
+            	└── trackA_sym.json
 ```
 **Metadata Schema** (.json)
 ```JSON
