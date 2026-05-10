@@ -32,7 +32,7 @@ RAM: 1GB - 2GB.
 
 Storage: Scalable (avg. 10MB per song).
 
-###Sync Triggers
+### Sync Triggers
 Instant: Triggered upon opening the mobile/desktop app.
 
 Scheduled: Background "diff" every 1 hour.
